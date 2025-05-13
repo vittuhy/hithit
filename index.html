@@ -161,6 +161,17 @@
         .form-container {
             max-width: 640px;
             margin: 0 auto;
+            width: 100%;
+            overflow: hidden;
+        }
+        
+        .form-container iframe {
+            width: 100%;
+            height: 100%;
+            min-height: 500px;
+            border: none;
+            transform: scale(1);
+            transform-origin: 0 0;
         }
         
         .social-section {
@@ -220,6 +231,22 @@
             .container {
                 padding: 1rem;
             }
+            
+            .form-container iframe {
+                min-height: 600px;
+                transform: scale(1);
+                width: 100%;
+                height: 100%;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            .form-container iframe {
+                min-height: 700px;
+                transform: scale(1);
+                width: 100%;
+                height: 100%;
+            }
         }
     </style>
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600&display=swap" rel="stylesheet">
@@ -252,8 +279,8 @@
         </div>
         
         <div class="image-comparison">
-            <img class="img-before" src="https://github.com/vittuhy/samples/blob/b7ac5b39f9d1b80045806029e33d291ecb545f8e/after.jpeg?raw=true" alt="Before renovation">
-            <img class="img-after" src="https://github.com/vittuhy/samples/blob/b7ac5b39f9d1b80045806029e33d291ecb545f8e/before.png?raw=true" alt="After renovation">
+            <img class="img-before" src="https://github.com/vittuhy/samples/blob/b7ac5b39f9d1b80045806029e33d291ecb545f8e/before.png?raw=true" alt="Before renovation">
+            <img class="img-after" src="https://github.com/vittuhy/samples/blob/b7ac5b39f9d1b80045806029e33d291ecb545f8e/after.jpeg?raw=true" alt="After renovation">
             <div class="slider-container">
                 <div class="slider-handle"></div>
             </div>
@@ -263,7 +290,7 @@
         
         <div class="form-section">
             <div class="form-container">
-                <iframe src="https://docs.google.com/forms/d/e/1FAIpQLSe22PjN8wF9PCgj06HBgBVWPN_eV7Wfy44eRLTMm--ysCbQKQ/viewform?embedded=true" width="100%" height="600" frameborder="0" marginheight="0" marginwidth="0">Načítání…</iframe>
+                <iframe src="https://docs.google.com/forms/d/e/1FAIpQLSe22PjN8wF9PCgj06HBgBVWPN_eV7Wfy44eRLTMm--ysCbQKQ/viewform?embedded=true" width="100%" height="500" frameborder="0" marginheight="0" marginwidth="0">Načítání…</iframe>
             </div>
         </div>
         
