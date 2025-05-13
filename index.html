@@ -1,0 +1,353 @@
+<!DOCTYPE html>
+<html lang="cs">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nový komunitní prostor v Radotíně</title>
+    <style>
+        :root {
+            --primary-color: #6b9080;
+            --secondary-color: #a4c3b2;
+            --light-color: #f6fff8;
+            --dark-color: #333;
+            --accent-color: #cce3de;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Montserrat', sans-serif;
+        }
+        
+        body {
+            background-color: var(--light-color);
+            color: var(--dark-color);
+            line-height: 1.6;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 2rem;
+        }
+        
+        header {
+            text-align: center;
+            margin-bottom: 3rem;
+        }
+        
+        .logo {
+            max-width: 200px;
+            margin-bottom: 2rem;
+        }
+        
+        h1 {
+            font-size: 2.5rem;
+            color: var(--primary-color);
+            margin-bottom: 1rem;
+            font-weight: 300;
+            letter-spacing: 1px;
+        }
+        
+        h2 {
+            font-size: 1.8rem;
+            color: var(--secondary-color);
+            margin: 2rem 0 1.5rem;
+            font-weight: 300;
+            letter-spacing: 0.5px;
+        }
+        
+        p {
+            margin-bottom: 1.5rem;
+            font-size: 1.1rem;
+            color: var(--dark-color);
+            max-width: 800px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        
+        .image-comparison {
+            position: relative;
+            width: 100%;
+            max-width: 800px;
+            height: 400px;
+            margin: 3rem auto;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+        }
+        
+        .image-comparison img {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        
+        .image-comparison .img-before {
+            z-index: 1;
+        }
+        
+        .image-comparison .img-after {
+            z-index: 2;
+            clip-path: polygon(0 0, 50% 0, 50% 100%, 0 100%);
+        }
+        
+        .slider-container {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            z-index: 3;
+        }
+        
+        .slider-handle {
+            position: absolute;
+            left: 50%;
+            top: 0;
+            bottom: 0;
+            width: 4px;
+            background: white;
+            cursor: ew-resize;
+            transform: translateX(-50%);
+            z-index: 4;
+        }
+        
+        .slider-handle::after {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 40px;
+            height: 40px;
+            background: white;
+            border-radius: 50%;
+            transition: background 0.3s ease;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .slider-handle::before {
+            content: '↔';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            font-size: 20px;
+            color: var(--primary-color);
+            z-index: 5;
+            pointer-events: none;
+        }
+        
+        .slider-button svg {
+            width: 24px;
+            height: 24px;
+            fill: var(--primary-color);
+        }
+        
+        .form-section {
+            text-align: center;
+            margin: 4rem 0;
+            padding: 2rem;
+            background-color: var(--accent-color);
+            border-radius: 8px;
+        }
+        
+        .form-container {
+            max-width: 640px;
+            margin: 0 auto;
+        }
+        
+        .social-section {
+            text-align: center;
+            margin: 3rem 0;
+        }
+        
+        .social-link {
+            display: inline-flex;
+            align-items: center;
+            text-decoration: none;
+            color: var(--primary-color);
+            font-weight: 500;
+            padding: 0.75rem 1.5rem;
+            border: 2px solid var(--primary-color);
+            border-radius: 30px;
+            transition: all 0.3s ease;
+        }
+        
+        .social-link:hover {
+            background-color: var(--primary-color);
+            color: white;
+        }
+        
+        .social-link svg {
+            width: 24px;
+            height: 24px;
+            margin-right: 8px;
+        }
+        
+        .decoration {
+            position: absolute;
+            z-index: -1;
+            opacity: 0.1;
+        }
+        
+        .decoration.top-left {
+            top: 50px;
+            left: 50px;
+        }
+        
+        .decoration.bottom-right {
+            bottom: 50px;
+            right: 50px;
+            transform: rotate(180deg);
+        }
+        
+        @media (max-width: 768px) {
+            h1 {
+                font-size: 2rem;
+            }
+            
+            h2 {
+                font-size: 1.5rem;
+            }
+            
+            .container {
+                padding: 1rem;
+            }
+        }
+    </style>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600&display=swap" rel="stylesheet">
+</head>
+<body>
+    <!-- Decorative SVG elements -->
+    <svg class="decoration top-left" width="200" height="200" viewBox="0 0 100 100">
+        <circle cx="50" cy="50" r="40" fill="none" stroke="#6b9080" stroke-width="2"/>
+        <circle cx="50" cy="50" r="30" fill="none" stroke="#6b9080" stroke-width="2"/>
+        <circle cx="50" cy="50" r="20" fill="none" stroke="#6b9080" stroke-width="2"/>
+    </svg>
+    
+    <svg class="decoration bottom-right" width="200" height="200" viewBox="0 0 100 100">
+        <circle cx="50" cy="50" r="40" fill="none" stroke="#6b9080" stroke-width="2"/>
+        <circle cx="50" cy="50" r="30" fill="none" stroke="#6b9080" stroke-width="2"/>
+        <circle cx="50" cy="50" r="20" fill="none" stroke="#6b9080" stroke-width="2"/>
+    </svg>
+    
+    <div class="container">
+        <header>
+            <img class="logo" src="https://www.culturenet.cz/coKmv4d994Swax/uploads/2021/04/Logo-Hithit-454x292.png" alt="Hithit Logo">
+            <h1>Nový komunitní prostor v Radotíně</h1>
+            <h2>Brzy spustíme kampaň na Hithit, nenechte si to ujít</h2>
+        </header>
+        
+        <div class="content">
+            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed euismod, odio at finibus fermentum, purus eros aliquam magna, in varius turpis risus vel magna. Nullam auctor, risus vel elementum consequat, ipsum nunc gravida velit, eget malesuada nisl nibh id dolor. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia curae; Aliquam erat volutpat. Cras tincidunt tortor nec mi volutpat, vel varius risus tincidunt.</p>
+            
+            <p>Curabitur commodo, erat vel pulvinar tempus, ipsum dolor ullamcorper nibh, vel bibendum quam eros nec libero. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Donec sed orci ut lorem consequat ullamcorper. Ut nec velit at dolor vestibulum pretium. Donec semper lobortis ligula, eu eleifend purus fermentum vitae. Etiam fermentum auctor velit sit amet malesuada. Fusce sed urna vel lectus eleifend tempus.</p>
+        </div>
+        
+        <div class="image-comparison">
+            <img class="img-before" src="https://github.com/vittuhy/samples/blob/b7ac5b39f9d1b80045806029e33d291ecb545f8e/after.jpeg?raw=true" alt="Before renovation">
+            <img class="img-after" src="https://github.com/vittuhy/samples/blob/b7ac5b39f9d1b80045806029e33d291ecb545f8e/before.png?raw=true" alt="After renovation">
+            <div class="slider-container">
+                <div class="slider-handle"></div>
+            </div>
+        </div>
+        
+        <h2>Dejte nám svůj email a my se ozveme, jak bude kampaň online.</h2>
+        
+        <div class="form-section">
+            <div class="form-container">
+                <iframe src="https://docs.google.com/forms/d/e/1FAIpQLSe22PjN8wF9PCgj06HBgBVWPN_eV7Wfy44eRLTMm--ysCbQKQ/viewform?embedded=true" width="100%" height="600" frameborder="0" marginheight="0" marginwidth="0">Načítání…</iframe>
+            </div>
+        </div>
+        
+        <div class="social-section">
+            <a href="https://www.facebook.com/groups/672563715244492" class="social-link" target="_blank">
+                <svg viewBox="0 0 24 24">
+                    <path fill="currentColor" d="M12 2.04C6.5 2.04 2 6.53 2 12.06C2 17.06 5.66 21.21 10.44 21.96V14.96H7.9V12.06H10.44V9.85C10.44 7.34 11.93 5.96 14.22 5.96C15.31 5.96 16.45 6.15 16.45 6.15V8.62H15.19C13.95 8.62 13.56 9.39 13.56 10.18V12.06H16.34L15.89 14.96H13.56V21.96A10 10 0 0 0 22 12.06C22 6.53 17.5 2.04 12 2.04Z"/>
+                </svg>
+                Připojte se k naší skupině
+            </a>
+        </div>
+    </div>
+    
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            var slider = document.querySelector('.slider-handle');
+            var container = document.querySelector('.image-comparison');
+            var afterImage = document.querySelector('.img-after');
+            
+            // Set initial position
+            setSliderPosition(50);
+            
+            function setSliderPosition(position) {
+                slider.style.left = position + '%';
+                afterImage.style.clipPath = `polygon(0 0, ${position}% 0, ${position}% 100%, 0 100%)`;
+            }
+            
+            // Handle mouse and touch events
+            var isDragging = false;
+            
+            slider.addEventListener('mousedown', startDrag);
+            container.addEventListener('mousemove', drag);
+            window.addEventListener('mouseup', endDrag);
+            
+            slider.addEventListener('touchstart', startDrag);
+            container.addEventListener('touchmove', drag);
+            window.addEventListener('touchend', endDrag);
+            
+            // Direct click on container
+            container.addEventListener('click', function(e) {
+                if (e.target === slider) return;
+                moveSliderTo(e);
+            });
+            
+            function startDrag(e) {
+                e.preventDefault();
+                isDragging = true;
+            }
+            
+            function drag(e) {
+                if (!isDragging) return;
+                e.preventDefault();
+                moveSliderTo(e);
+            }
+            
+            function endDrag() {
+                isDragging = false;
+            }
+            
+            function moveSliderTo(e) {
+                var containerRect = container.getBoundingClientRect();
+                var containerWidth = containerRect.width;
+                var position;
+                
+                // Check if touch or mouse event
+                if (e.type.includes('touch')) {
+                    position = (e.touches[0].clientX - containerRect.left) / containerWidth * 100;
+                } else {
+                    position = (e.clientX - containerRect.left) / containerWidth * 100;
+                }
+                
+                // Constrain position between 0 and 100
+                position = Math.max(0, Math.min(100, position));
+                
+                setSliderPosition(position);
+            }
+            
+            // Ensure images are loaded
+            window.addEventListener('load', function() {
+                console.log('All content loaded');
+                // Set position again after everything loaded
+                setSliderPosition(50);
+            });
+        });
+    </script>
+</body>
+</html>
