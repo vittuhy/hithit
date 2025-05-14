@@ -4,13 +4,14 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Nový komunitní prostor v Radotíně</title>
+    <link rel="icon" type="image/svg+xml" href='data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64"><circle cx="32" cy="32" r="28" fill="%231DCD9F"/></svg>'>
     <style>
         :root {
-            --primary-color: #6b9080;
-            --secondary-color: #a4c3b2;
-            --light-color: #f6fff8;
-            --dark-color: #333;
-            --accent-color: #cce3de;
+            --primary-color: #1DCD9F;
+            --secondary-color: #169976;
+            --light-color: #FFFFFF;
+            --dark-color: #000000;
+            --accent-color: #222222;
         }
         
         * {
@@ -20,9 +21,11 @@
             font-family: 'Montserrat', sans-serif;
         }
         
+        @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700;800;900&display=swap');
+        
         body {
-            background-color: var(--light-color);
-            color: var(--dark-color);
+            background-color: var(--dark-color);
+            color: var(--light-color);
             line-height: 1.6;
         }
         
@@ -32,40 +35,79 @@
             padding: 2rem;
         }
         
+        .content {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 2rem 0;
+            color: var(--light-color);
+        }
+        
+        .content p {
+            margin-bottom: 1.5rem;
+            font-size: 1.1rem;
+            color: var(--light-color);
+            opacity: 0.9;
+            line-height: 1.8;
+        }
+        
+        .content p:last-child {
+            margin-bottom: 0;
+        }
+        
         header {
             text-align: center;
-            margin-bottom: 3rem;
+            margin-bottom: 4rem;
+            position: relative;
         }
         
         .logo {
             max-width: 200px;
             margin-bottom: 2rem;
+            filter: brightness(0) invert(1);
         }
         
         h1 {
-            font-size: 2.5rem;
+            font-family: 'Montserrat', sans-serif;
+            font-size: 4.5rem;
             color: var(--primary-color);
             margin-bottom: 1rem;
-            font-weight: 300;
-            letter-spacing: 1px;
+            font-weight: 900;
+            letter-spacing: -1px;
+            line-height: 1.1;
+            text-transform: uppercase;
+            background: linear-gradient(45deg, var(--primary-color), var(--secondary-color));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            text-shadow: 0 0 30px rgba(29, 205, 159, 0.2);
         }
         
         h2 {
-            font-size: 1.8rem;
-            color: var(--secondary-color);
-            margin: 2rem 0 1.5rem;
+            font-family: 'Montserrat', sans-serif;
+            font-size: 2.4rem;
+            color: var(--light-color);
+            margin: 1rem 0 2rem;
             font-weight: 300;
-            letter-spacing: 0.5px;
+            letter-spacing: 2px;
             text-align: center;
         }
         
-        p {
-            margin-bottom: 1.5rem;
-            font-size: 1.1rem;
-            color: var(--dark-color);
-            max-width: 800px;
-            margin-left: auto;
-            margin-right: auto;
+        .header-divider {
+            width: 120px;
+            height: 4px;
+            background: var(--primary-color);
+            margin: 2rem auto;
+            position: relative;
+        }
+        
+        .header-divider::before {
+            content: '';
+            position: absolute;
+            top: -8px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 40px;
+            height: 4px;
+            background: var(--secondary-color);
         }
         
         .image-comparison {
@@ -76,7 +118,7 @@
             margin: 3rem auto;
             border-radius: 8px;
             overflow: hidden;
-            box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
         }
         
         .image-comparison img {
@@ -154,25 +196,49 @@
         .form-section {
             text-align: center;
             margin: 4rem 0;
-            padding: 2rem;
+            padding: 3rem;
             background-color: var(--accent-color);
-            border-radius: 8px;
+            border-radius: 12px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
         }
         
         .form-container {
             max-width: 640px;
             margin: 0 auto;
             width: 100%;
+            background-color: var(--accent-color);
+            border-radius: 8px;
             overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+            padding: 1rem;
         }
         
         .form-container iframe {
             width: 100%;
-            height: 100%;
-            min-height: 500px;
+            height: 157px;
             border: none;
-            transform: scale(1);
-            transform-origin: 0 0;
+            background-color: transparent;
+            position: relative;
+            z-index: 1;
+            box-shadow: none;
+            outline: none;
+            -webkit-appearance: none;
+            -moz-appearance: none;
+            appearance: none;
+        }
+        
+        .form-title {
+            color: var(--light-color);
+            font-size: 2rem;
+            margin-bottom: 1rem;
+            font-weight: 700;
+        }
+        
+        .form-subtitle {
+            color: var(--primary-color);
+            font-size: 1.1rem;
+            margin-bottom: 2rem;
+            opacity: 0.9;
         }
         
         .social-section {
@@ -194,7 +260,7 @@
         
         .social-link:hover {
             background-color: var(--primary-color);
-            color: white;
+            color: var(--dark-color);
         }
         
         .social-link svg {
@@ -233,50 +299,73 @@
                 padding: 1rem;
             }
             
+            .form-section {
+                margin: 2rem 0;
+                padding: 1.5rem;
+            }
+            
+            .form-container {
+                padding: 0.5rem;
+            }
+            
             .form-container iframe {
-                min-height: 600px;
-                transform: scale(1);
+                height: 157px;
+                transform: none;
                 width: 100%;
-                height: 100%;
+            }
+            
+            .form-title {
+                font-size: 1.5rem;
+            }
+            
+            .form-subtitle {
+                font-size: 1rem;
             }
         }
         
         @media (max-width: 480px) {
+            .form-section {
+                margin: 1.5rem 0;
+                padding: 1rem;
+            }
+            
+            .form-container {
+                padding: 0.25rem;
+            }
+            
             .form-container iframe {
-                min-height: 700px;
-                transform: scale(1);
+                height: 157px;
+                transform: none;
                 width: 100%;
-                height: 100%;
             }
         }
     </style>
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600&display=swap" rel="stylesheet">
 </head>
 <body>
-    <!-- Decorative SVG elements -->
-    <svg class="decoration top-left" width="200" height="200" viewBox="0 0 100 100">
-        <circle cx="50" cy="50" r="40" fill="none" stroke="#6b9080" stroke-width="2"/>
-        <circle cx="50" cy="50" r="30" fill="none" stroke="#6b9080" stroke-width="2"/>
-        <circle cx="50" cy="50" r="20" fill="none" stroke="#6b9080" stroke-width="2"/>
-    </svg>
-    
-    <svg class="decoration bottom-right" width="200" height="200" viewBox="0 0 100 100">
-        <circle cx="50" cy="50" r="40" fill="none" stroke="#6b9080" stroke-width="2"/>
-        <circle cx="50" cy="50" r="30" fill="none" stroke="#6b9080" stroke-width="2"/>
-        <circle cx="50" cy="50" r="20" fill="none" stroke="#6b9080" stroke-width="2"/>
-    </svg>
+    <!-- Decorative SVG elements removed as requested -->
     
     <div class="container">
         <header>
             <img class="logo" src="https://www.culturenet.cz/coKmv4d994Swax/uploads/2021/04/Logo-Hithit-454x292.png" alt="Hithit Logo">
-            <h1>Nový komunitní prostor v Radotíně</h1>
-            <h2>Brzy spustíme kampaň na Hithit, nenechte si to ujít</h2>
+            <div class="header-divider"></div>
+            <h1>Nový komunitní<br>prostor v Radotíně</h1>
+            <div class="header-divider"></div>
+            <h2>Brzy spustíme kampaň na Hithit,<br>nenechte si to ujít</h2>
         </header>
         
         <div class="content">
             <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed euismod, odio at finibus fermentum, purus eros aliquam magna, in varius turpis risus vel magna. Nullam auctor, risus vel elementum consequat, ipsum nunc gravida velit, eget malesuada nisl nibh id dolor. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia curae; Aliquam erat volutpat. Cras tincidunt tortor nec mi volutpat, vel varius risus tincidunt.</p>
             
             <p>Curabitur commodo, erat vel pulvinar tempus, ipsum dolor ullamcorper nibh, vel bibendum quam eros nec libero. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Donec sed orci ut lorem consequat ullamcorper. Ut nec velit at dolor vestibulum pretium. Donec semper lobortis ligula, eu eleifend purus fermentum vitae. Etiam fermentum auctor velit sit amet malesuada. Fusce sed urna vel lectus eleifend tempus.</p>
+        </div>
+        
+        <div class="video-container" style="margin: 3rem auto; max-width: 800px; position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden; border-radius: 12px; box-shadow: 0 10px 30px rgba(0,0,0,0.3);">
+            <iframe style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; border: none;" src="https://www.youtube.com/embed/SzJ7OLetXM4?si=IHUOmztxe30i1xD2" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+        </div>
+
+        <div class="content" style="margin: 3rem auto; max-width: 800px;">
+            <p style="font-size: 1.2rem; line-height: 1.8; font-weight: 500;">Připojte se k nám na této vzrušující cestě transformace. Společně vytvoříme prostor, který bude sloužit celé komunitě. Každý váš příspěvek, ať už malý nebo velký, pomůže proměnit tento sen ve skutečnost. Buďte součástí této změny a pomozte nám vytvořit místo, kde se budou moci setkávat generace, sdílet příběhy a budovat nové vztahy.</p>
         </div>
         
         <div class="image-comparison">
@@ -287,13 +376,40 @@
             </div>
         </div>
         
-        <h2>Dejte nám svůj email a my se ozveme, jak bude kampaň online.</h2>
-        
-        <div class="form-section">
-            <div class="form-container">
-                <iframe src="https://docs.google.com/forms/d/e/1FAIpQLSe22PjN8wF9PCgj06HBgBVWPN_eV7Wfy44eRLTMm--ysCbQKQ/viewform?embedded=true" width="100%" height="500" frameborder="0" marginheight="0" marginwidth="0">Načítání…</iframe>
+        <div class="cta-container" style="text-align: center; margin: 3rem 0;">
+            <h3 style="color: var(--primary-color); font-size: 2rem; margin-bottom: 1.5rem; text-transform: uppercase; letter-spacing: 1px;">Chcete vidět více?</h3>
+            <div class="arrow-down" style="animation: bounce 2s infinite;">
+                <svg xmlns="http://www.w3.org/2000/svg" width="64" height="64" viewBox="0 0 24 24" fill="none" stroke="var(--primary-color)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M12 5v14M5 12l7 7 7-7"/>
+                </svg>
             </div>
         </div>
+
+        <style>
+            @keyframes bounce {
+                0%, 20%, 50%, 80%, 100% {
+                    transform: translateY(0);
+                }
+                40% {
+                    transform: translateY(-20px);
+                }
+                60% {
+                    transform: translateY(-10px);
+                }
+            }
+        </style>
+        
+        <div class="form-section">
+            <h2 class="form-title">Dejte nám svůj email</h2>
+            <p class="form-subtitle">My se ozveme, jak bude kampaň online</p>
+            <div class="form-container">
+                <iframe data-tally-src="https://tally.so/embed/w5QyeP?alignLeft=1&hideTitle=1&transparentBackground=1&dynamicHeight=1" loading="lazy" width="100%" height="157" frameborder="0" marginheight="0" marginwidth="0" title="null"></iframe>
+            </div>
+        </div>
+        
+        <script>
+            var d=document,w="https://tally.so/widgets/embed.js",v=function(){"undefined"!=typeof Tally?Tally.loadEmbeds():d.querySelectorAll("iframe[data-tally-src]:not([src])").forEach((function(e){e.src=e.dataset.tallySrc}))};if("undefined"!=typeof Tally)v();else if(d.querySelector('script[src="'+w+'"]')==null){var s=d.createElement("script");s.src=w,s.onload=v,s.onerror=v,d.body.appendChild(s);}
+        </script>
         
         <div class="social-section">
             <a href="https://www.facebook.com/groups/672563715244492" class="social-link" target="_blank">
